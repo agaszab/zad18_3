@@ -3,7 +3,7 @@ package pl.javastart;
 
 import org.springframework.stereotype.Component;
 
-@Component
+
 public class Produkt {
     private String nazwa;
     private Kategorie kategoria;

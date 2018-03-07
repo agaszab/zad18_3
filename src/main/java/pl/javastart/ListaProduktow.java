@@ -1,18 +1,18 @@
 package pl.javastart;
 
 import org.springframework.stereotype.Repository;
-
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Repository
 public class ListaProduktow {
 
-  //  private Produkt produkt;
 
     private List <Produkt> produkty;
 
     public ListaProduktow () {
+
 
         produkty = new ArrayList<>();
 
@@ -37,10 +37,15 @@ public class ListaProduktow {
         produkty.add(pr9);
     }
 
-
-
     public List<Produkt> pobierzProdukty() {
         return produkty;
     }
+
+    public void add (Produkt produkt) {
+
+        produkty.add(produkt);
+
+    }
+
 
 }
