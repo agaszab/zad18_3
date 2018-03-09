@@ -11,8 +11,7 @@ public class ListaProduktow {
 
     private List <Produkt> produkty;
 
-    public ListaProduktow () {
-
+    public void ListaProduktow () {
 
         produkty = new ArrayList<>();
 
@@ -35,6 +34,7 @@ public class ListaProduktow {
         produkty.add(pr7);
         produkty.add(pr8);
         produkty.add(pr9);
+
     }
 
     public List<Produkt> pobierzProdukty() {

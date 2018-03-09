@@ -1,9 +1,5 @@
 package pl.javastart;
 
-
-import org.springframework.stereotype.Component;
-
-
 public class Produkt {
     private String nazwa;
     private Kategorie kategoria;
@@ -41,6 +37,6 @@ public class Produkt {
 
     @Override
     public String toString() {
-        return "Nazwa produktu: " + nazwa + ", kategoria: " + kategoria + ", cena: " + cena+"\n";
+        return "Nazwa produktu: " + nazwa + ", kategoria: " + kategoria + ", cena: " + cena+"\n\n";
     }
 }

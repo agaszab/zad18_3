@@ -12,11 +12,11 @@ import java.util.List;
 @RequestMapping("/")
 public class ProduktController {
 
-    private ListaProduktow listaProduktow;
+    private ListaProduktow listaProduktow = new ListaProduktow();
+
 
     @ResponseBody
     public static String start() {
-
         return "index.html";
 
     }
@@ -26,6 +26,7 @@ public class ProduktController {
     public String wyswietlProdukty(HttpServletRequest request) {
 
       String kat = request.getParameter("kategorie");
+      listaProduktow.ListaProduktow();
 
         if (kat==null || kat.equals("")) { return   wyswietlProdukty(); }
         if (kat.equals("DOMOWE")) { return   wyswietl(Kategorie.DOMOWE);  }
@@ -35,18 +36,19 @@ public class ProduktController {
     }
 
 
-  //  @RequestMapping("/list")
     @ResponseBody
     public String wyswietlProdukty() {
 
         List<Produkt> produkty=listaProduktow.pobierzProdukty();
 
         String result = "";
+        int cena=0;
 
         for (Produkt pr : produkty) {
-            result += pr.toString();
+            result += pr.toString()+"<br/>";
+            cena+=pr.getCena();
         }
-       return result;
+       return "Produkty:<br/>"+result+"<br/><br/>Cena produktów: "+cena;
 
     }
 
@@ -54,16 +56,15 @@ public class ProduktController {
         List<Produkt> produkty=listaProduktow.pobierzProdukty();
 
         String result = "";
+        int cena=0;
 
         for (Produkt pr : produkty) {
-            if (pr.getKategoria()==kategorie)
-            result += pr.toString();
+            if (pr.getKategoria()==kategorie){
+            result += pr.toString()+"<br/>";
+            cena+=pr.getCena();}
         }
-        return result;
+        return "Produkty:<br/>"+result+"<br/><br/>Cena produktów: "+cena;
 
     }
-
-
-
 
 }
