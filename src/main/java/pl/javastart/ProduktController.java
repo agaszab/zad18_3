@@ -24,10 +24,10 @@ public class ProduktController {
 
     @RequestMapping("/list")
     @ResponseBody
-    public String wyswietlProdukty(@RequestParam Kategorie kategoria) {
+    public String wyswietlProdukty(@RequestParam String kat) {
 
       listaProduktow.ListaProduktow();
-      Kategorie kat=kategoria;
+
 
         if (kat==null || kat.equals("")) { return   wyswietlProdukty(); }
         if (kat.equals("DOMOWE")) { return   wyswietl(Kategorie.DOMOWE);  }
