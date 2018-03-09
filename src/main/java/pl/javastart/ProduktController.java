@@ -2,9 +2,9 @@ package pl.javastart;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 
@@ -16,17 +16,18 @@ public class ProduktController {
 
 
     @ResponseBody
-    public static String start() {
+    public static String main() {
         return "index.html";
 
     }
 
+
     @RequestMapping("/list")
     @ResponseBody
-    public String wyswietlProdukty(HttpServletRequest request) {
+    public String wyswietlProdukty(@RequestParam Kategorie kategoria) {
 
-      String kat = request.getParameter("kategorie");
       listaProduktow.ListaProduktow();
+      Kategorie kat=kategoria;
 
         if (kat==null || kat.equals("")) { return   wyswietlProdukty(); }
         if (kat.equals("DOMOWE")) { return   wyswietl(Kategorie.DOMOWE);  }
