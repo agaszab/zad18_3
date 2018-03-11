@@ -1,6 +1,7 @@
 package pl.javastart;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,38 +23,40 @@ public class ProduktController {
     }
 
 
+   /*     @GetMapping("/")
+    public String producst(Model model) {
+        List<Product> products = productRepository.findAll();
+        model.addAttribute("products", products);
+        return "products"; // doklej .html i połącz model z templates/products.html
+}
+
+
+
     @RequestMapping("/list")
     @ResponseBody
-    public String wyswietlProdukty(@RequestParam String kat) {
+    public String wyswietlProdukty(Model model, @RequestParam String kategorie) {
 
       listaProduktow.ListaProduktow();
+      String kat=kategorie;
 
-
-        if (kat==null || kat.equals("")) { return   wyswietlProdukty(); }
-        if (kat.equals("DOMOWE")) { return   wyswietl(Kategorie.DOMOWE);  }
-        if (kat.equals("INNE")) { return   wyswietl(Kategorie.INNE);  }
-        if (kat.equals("SPOZYWCZE")) { return   wyswietl(Kategorie.SPOZYWCZE);  }
+        if (kat==null || kat.equals("")) { return   wyswietlProdukty(Model model); }
+        if (kat.equals("DOMOWE")) { return   wyswietl(Model model, Kategorie.DOMOWE);  }
+        if (kat.equals("INNE")) { return   wyswietl(Model model, Kategorie.INNE);  }
+        if (kat.equals("SPOZYWCZE")) { return   wyswietl(Model model, Kategorie.SPOZYWCZE);  }
         return "nic";
-    }
+    }*/
 
+    @RequestMapping("/list")
+    public String wyswietlProdukty(Model model) {
 
-    @ResponseBody
-    public String wyswietlProdukty() {
+        listaProduktow.ListaProduktow();
+        model.addAttribute("produkty", listaProduktow);
 
-        List<Produkt> produkty=listaProduktow.pobierzProdukty();
-
-        String result = "";
-        int cena=0;
-
-        for (Produkt pr : produkty) {
-            result += pr.toString()+"<br/>";
-            cena+=pr.getCena();
-        }
-       return "Produkty:<br/>"+result+"<br/><br/>Cena produktów: "+cena;
+        return "produkty";
 
     }
 
-    public String wyswietl (Kategorie kategorie){
+    public String wyswietl (Model model, Kategorie kategorie){
         List<Produkt> produkty=listaProduktow.pobierzProdukty();
 
         String result = "";
