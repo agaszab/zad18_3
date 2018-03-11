@@ -10,20 +10,22 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping("/")
 public class ProduktController {
 
-    private ListaProduktow listaProduktow = new ListaProduktow();
+    private ListaProduktow listaProduktow;
 
+    public ProduktController(ListaProduktow listaProduktow) {
+        this.listaProduktow = listaProduktow;
+    }
 
     @ResponseBody
     public static String main() {
+
         return "index.html";
 
     }
 
-
-   /*  
+   /*
 
 
     @RequestMapping("/list")
@@ -38,20 +40,23 @@ public class ProduktController {
         if (kat.equals("INNE")) { return   wyswietl(Model model, Kategorie.INNE);  }
         if (kat.equals("SPOZYWCZE")) { return   wyswietl(Model model, Kategorie.SPOZYWCZE);  }
         return "nic";
-    }*/
+    }
+
+*/
 
     @RequestMapping("/list")
     public String wyswietlProdukty(Model model) {
+        List<Produkt> produkty=listaProduktow.pobierzProdukty();
 
-        listaProduktow.ListaProduktow();
-        model.addAttribute("produkty", listaProduktow);
+        model.addAttribute("produkty", produkty);
 
-        return "produkty";
-
+         return "produkty";
     }
 
+
+/*
     public String wyswietl (Model model, Kategorie kategorie){
-        List<Produkt> produkty=listaProduktow.pobierzProdukty();
+       List<Produkt> produkty=listaProduktow.pobierzProdukty();
 
         String result = "";
         int cena=0;
@@ -63,6 +68,6 @@ public class ProduktController {
         }
         return "Produkty:<br/>"+result+"<br/><br/>Cena produktów: "+cena;
 
-    }
+    } */
 
 }
