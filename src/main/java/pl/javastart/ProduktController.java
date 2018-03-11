@@ -23,13 +23,7 @@ public class ProduktController {
     }
 
 
-   /*     @GetMapping("/")
-    public String producst(Model model) {
-        List<Product> products = productRepository.findAll();
-        model.addAttribute("products", products);
-        return "products"; // doklej .html i połącz model z templates/products.html
-}
-
+   /*  
 
 
     @RequestMapping("/list")
